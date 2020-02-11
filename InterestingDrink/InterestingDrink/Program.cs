@@ -47,7 +47,7 @@ namespace InterestingDrink
                 if (mass[m] <= value && mass[m + 1] > value)
                     return m + 1;
 
-                if (mass[m] < value)
+                if (mass[m] <= value)
                     l = m;
                 else
                     r = m;
