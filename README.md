@@ -103,4 +103,43 @@ for (int i = names.Length - 1; i >= 0; i--)
 }
 ```
 
+## Homework 2
 
+### ExchangeRequests
+Даны заявки на покупки акций. В заявке указано направление(покупка/продажа), цена и количество. Нужно вывести себе самые выгодные s штук заявок для каждого направления. Заявки о продаже брать самые дешевые, а заявки о покупке брать самые дорогие.
+
+Решение: фильтруем отдельно покупки, отдельно продажу, группируем их по цене. Обе коллекции сортируем по цене. Продажу выводим последние s штук. Покупки выводим первые s штук
+```
+var asdf = requests.AsQueryable();
+var buy = asdf
+	.Where(f => f.d == 'B')
+	.GroupBy(f => new { f.p })
+	.Select(f => new Request { p = f.Key.p, q = f.Sum(sum => sum.q) })
+	.ToArray();
+var sell = asdf
+	.Where(f => f.d == 'S')
+	.GroupBy(f => new { f.p })
+	.Select(f => new Request { p = f.Key.p, q = f.Sum(sum => sum.q) })
+	.ToArray();
+
+// Сортируем по цене
+Array.Sort(buy, new Comparison<Request>(
+				(i1, i2) => i2.CompareTo(i1)));
+
+Array.Sort(sell, new Comparison<Request>(
+				(i1, i2) => i2.CompareTo(i1)));
+
+int sellCount = sell.Count();
+sellCount = s > sellCount ? sellCount : s;
+for (int i = sell.Count() - sellCount; i < sell.Count(); i++)
+{
+	Console.WriteLine("S " + sell[i].p + " " + sell[i].q);
+}
+
+int buyCount = buy.Count();
+buyCount = s > buyCount ? buyCount : s;
+for (int i = 0; i < buyCount; i++)
+{
+	Console.WriteLine("B " + buy[i].p + " " + buy[i].q);
+}
+```
