@@ -143,3 +143,33 @@ for (int i = 0; i < buyCount; i++)
 	Console.WriteLine("B " + buy[i].p + " " + buy[i].q);
 }
 ```
+
+### Reposts
+Даны репосты
+```
+tourist reposted Polycarp
+Petr reposted Tourist
+```
+
+Найти самую длинную цепочку
+
+Решение: сначала кладем поликарпа с длиной 1. Далее Каждое левое имя кладем с длиной правого + 1 (правое имя гарантированно уже лежит в словаре)
+
+```
+Dictionary<string, int> names = new Dictionary<string, int>(n + 1);
+names.Add("polycarp", 1);
+int maxLength = 1;
+
+for (int i = 0; i < n; i++)
+{
+	string[] massive = Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+	string who = massive[0].ToLower();
+	string whom = massive[2].ToLower();
+
+	int currentLength = names[whom] + 1;
+	names.Add(who, currentLength);
+	maxLength = Max(maxLength, currentLength);
+}
+Console.WriteLine(maxLength);
+```
+
