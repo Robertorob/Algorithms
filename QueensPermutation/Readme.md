@@ -1,1 +1,1 @@
-How many permutation of 8 queens is there where they do not beat each other?
+How many permutation of 8 queens is there if they do not beat each other?
