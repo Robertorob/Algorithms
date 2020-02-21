@@ -173,3 +173,55 @@ for (int i = 0; i < n; i++)
 Console.WriteLine(maxLength);
 ```
 
+### HostelBath
+Дана очередь из пяти студентов 12345
+Они общаются 1-2, 3-4, 5 - не общается
+
+Потом 1 уходит, остаются 2345
+
+Общаются 2-3, 4-5 и так далее
+
+Есть матрица счасться g[5][5] для каждого с каждым, она не симметричная (Вася больше счастлив от общения с Дашей, чем Даша от общения с Васей)
+
+Найти максимальную сумму счастья
+
+Решение: перебрать **все перестановки** и найти ту, которая имеет максимальную сумму
+
+```
+static void Main(string[] args)
+{
+	for (int i = 0; i < n; i++)
+	{
+		string[] line = Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+		for (int j = 0; j < n; j++)
+		{
+			g[i, j] = int.Parse(line[j]);
+		}
+	}
+
+	ChooseValueForPermutation(0);
+	Console.WriteLine(max);
+}
+
+public static void ChooseValueForPermutation(int index)
+{
+	for (int i = 0; i < n; i++)
+	{
+		bool checkDesk = CheckDesk(index, i);
+		massive[index] = i;
+		if (checkDesk && index == n - 1)
+		{
+			int temp = SumOfHappiness();
+			if (temp > max)
+				max = temp;
+			return;
+		}
+
+		if (checkDesk)
+		{                  
+			ChooseValueForPermutation(index + 1);
+		}
+
+	}
+}
+```
