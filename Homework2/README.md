@@ -121,10 +121,14 @@ public static void ChooseValueForPermutation(int index)
 }
 ```
 ## Guard
-Find minimum amount of steps from point 'P' to find all '1' places.
+Find minimum amount of steps from start point 'P' to final point. On your way you have to find all '1's.
 
-Пройти от точки 'P' и захватить все единички. Наверх можно только по боковым нулям пройти. Найти минимальное число шагов
-
+Пройти от стартовой точки 'P' и захватить все единички. Наверх можно подняться только по боковым нулям. Найти минимальное число шагов
+```
+010000
+001000
+P00100
+```
 Решение: падает на 43 тесте
 
 ## ZerosAndOnes
