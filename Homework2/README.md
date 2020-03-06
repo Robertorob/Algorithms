@@ -173,3 +173,4 @@ public static void PutQueen(int index)
 решается динамическим программированием
 
 ## Fence
+Легкая задача
