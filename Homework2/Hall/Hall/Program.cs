@@ -96,16 +96,6 @@ namespace Hall
             return (long)c;
         }
 
-        public static long FactorialMod(long value)
-        {
-            long result = 1;
-            for (long i = 2; i <= value; i++)
-            {
-                result = i * result;
-            }
-            return result;
-        }
-
         public static long Choose(long n, long a, long b)
         {
             if (n == 0)
