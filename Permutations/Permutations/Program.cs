@@ -32,39 +32,41 @@ namespace Permutations
 
         public static bool NextPermutation(char[] mass)
         {
-            int index = 0;
-
+            // Going through all elements from right and trying to find an element where sequence begins to descend (descendCharIndex).
+            int descendCharIndex = 0;
             for (int i = mass.Length - 1; i > 0; i--)
             {
                 if (mass[i] > mass[i - 1])
                 {
-                    index = i - 1;
+                    descendCharIndex = i - 1;
                     break;
                 }
 
+                // Assign index to -1, if there is no permutations left.
                 if(mass[i-1] > mass[i] && (i-1) == 0)
                 {
-                    index = -1;
+                    descendCharIndex = -1;
                 }
             }
 
-            if(index == -1)
+            if(descendCharIndex == -1)
             {
                 return false;
             }
 
-            int index2 = 0;
+            // Going through all elements from right and trying to find the next character after the sequence-begins-to-descend character.
+            int nextCharIndex = 0;
             for (int i = mass.Length - 1; i >= 0; i--)
             {
-                if (mass[i] > mass[index])
+                if (mass[i] > mass[descendCharIndex])
                 {
-                    index2 = i;
+                    nextCharIndex = i;
                     break;
                 }
             }
 
-            Swap(mass, index, index2);
-            Array.Reverse(mass, index + 1, mass.Length - index - 1);
+            Swap(mass, descendCharIndex, nextCharIndex);
+            Array.Reverse(mass, descendCharIndex + 1, mass.Length - descendCharIndex - 1);
 
             return true;
         }
