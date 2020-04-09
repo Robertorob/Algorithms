@@ -10,25 +10,27 @@ namespace Permutations
     {
         static void Main(string[] args)
         {
-            int[] massive = new int[] { 1,1,1,4};
+            string input = "aabc";
 
+            PrintAllPermutations(input);
+        }
 
-            bool flag = NextPermutation(massive);
-            int amount = 1;
-            while (flag)
+        public static void PrintAllPermutations(string input)
+        {
+            char[] permutation = input.ToArray();
+            Array.Sort(permutation);
+
+            PrintPermutation(permutation, 1);
+
+            int permutationIndex = 2;
+            while (NextPermutation(permutation))
             {
-                Console.Write(amount + ": ");
-                for (int i = 0; i < massive.Length; i++)
-                {
-                    Console.Write(massive[i] + " ");
-                }
-                Console.WriteLine();
-                flag = NextPermutation(massive);
-                amount++;
+                PrintPermutation(permutation, permutationIndex);
+                permutationIndex++;
             }
         }
 
-        public static bool NextPermutation(int[] mass)
+        public static bool NextPermutation(char[] mass)
         {
             int index = 0;
 
@@ -61,19 +63,27 @@ namespace Permutations
                 }
             }
 
-            mass = Swap(mass, index, index2);
+            Swap(mass, index, index2);
             Array.Reverse(mass, index + 1, mass.Length - index - 1);
 
             return true;
         }
 
-        public static int[] Swap(int[] mass, int x, int y)
+        public static void Swap(char[] mass, int x, int y)
         {
-            int z = mass[x];
+            char z = mass[x];
             mass[x] = mass[y];
             mass[y] = z;
+        }
 
-            return mass;
+        public static void PrintPermutation(char[] permutation, int permutationIndex)
+        {
+            Console.Write(permutationIndex + ": ");
+            for (int i = 0; i < permutation.Length; i++)
+            {
+                Console.Write(permutation[i] + " ");
+            }
+            Console.WriteLine();
         }
 
     }
