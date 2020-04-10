@@ -60,6 +60,6 @@ How many permutation of 8 queens is there if they do not beat each other?
 	13:     n = 14      377     2
 	14:     n = 15      610     1
 	15:     n = 16      987     0
-	16:		n = 17      1597    1
+	16:	n = 17      1597    1
 ```
 
