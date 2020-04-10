@@ -80,7 +80,7 @@ namespace Permutations
 
         public static void PrintPermutation(char[] permutation, int permutationIndex)
         {
-            Console.Write(permutationIndex + ": ");
+            Console.Write(permutationIndex + ":\t");
             for (int i = 0; i < permutation.Length; i++)
             {
                 Console.Write(permutation[i] + " ");
