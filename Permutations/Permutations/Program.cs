@@ -20,30 +20,28 @@ namespace Permutations
             char[] permutation = input.ToArray();
             Array.Sort(permutation);
 
-            PrintPermutation(permutation, 1);
+            PrintPermutation(permutation);
 
-            int permutationIndex = 2;
             while (NextPermutation(permutation))
             {
-                PrintPermutation(permutation, permutationIndex);
-                permutationIndex++;
+                PrintPermutation(permutation);
             }
         }
 
-        public static bool NextPermutation(char[] mass)
+        public static bool NextPermutation(char[] permutation)
         {
             // Going through all elements from right and trying to find an element where sequence begins to descend (descendCharIndex).
             int descendCharIndex = 0;
-            for (int i = mass.Length - 1; i > 0; i--)
+            for (int i = permutation.Length - 1; i > 0; i--)
             {
-                if (mass[i] > mass[i - 1])
+                if (permutation[i] > permutation[i - 1])
                 {
                     descendCharIndex = i - 1;
                     break;
                 }
 
                 // Assign index to -1, if there is no permutations left.
-                if(mass[i-1] > mass[i] && (i-1) == 0)
+                if(permutation[i-1] > permutation[i] && (i-1) == 0)
                 {
                     descendCharIndex = -1;
                 }
@@ -56,31 +54,30 @@ namespace Permutations
 
             // Going through all elements from right and trying to find the next character after the sequence-begins-to-descend character.
             int nextCharIndex = 0;
-            for (int i = mass.Length - 1; i >= 0; i--)
+            for (int i = permutation.Length - 1; i >= 0; i--)
             {
-                if (mass[i] > mass[descendCharIndex])
+                if (permutation[i] > permutation[descendCharIndex])
                 {
                     nextCharIndex = i;
                     break;
                 }
             }
 
-            Swap(mass, descendCharIndex, nextCharIndex);
-            Array.Reverse(mass, descendCharIndex + 1, mass.Length - descendCharIndex - 1);
+            Swap(permutation, descendCharIndex, nextCharIndex);
+            Array.Reverse(permutation, descendCharIndex + 1, permutation.Length - descendCharIndex - 1);
 
             return true;
         }
 
-        public static void Swap(char[] mass, int x, int y)
+        public static void Swap(char[] array, int x, int y)
         {
-            char z = mass[x];
-            mass[x] = mass[y];
-            mass[y] = z;
+            char z = array[x];
+            array[x] = array[y];
+            array[y] = z;
         }
 
-        public static void PrintPermutation(char[] permutation, int permutationIndex)
+        public static void PrintPermutation(char[] permutation)
         {
-            Console.Write(permutationIndex + ":\t");
             for (int i = 0; i < permutation.Length; i++)
             {
                 Console.Write(permutation[i] + " ");
