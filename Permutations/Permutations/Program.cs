@@ -17,6 +17,12 @@ namespace Permutations
 
         public static void PrintAllPermutations(string input)
         {
+            if (string.IsNullOrEmpty(input))
+            {
+                Console.WriteLine("String is empty");
+                return;
+            }
+
             char[] permutation = input.ToArray();
             Array.Sort(permutation);
 
@@ -30,6 +36,7 @@ namespace Permutations
 
         public static bool NextPermutation(char[] permutation)
         {
+            // 123 654 -> 124 653 -> 124 356
             // Going through all elements from right and trying to find an element where sequence begins to descend (descendCharIndex).
             int descendCharIndex = 0;
             for (int i = permutation.Length - 1; i > 0; i--)
@@ -41,15 +48,10 @@ namespace Permutations
                 }
 
                 // Assign index to -1, if there is no permutations left.
-                if(permutation[i-1] > permutation[i] && (i-1) == 0)
+                if(i - 1 == 0)
                 {
-                    descendCharIndex = -1;
+                    return false;
                 }
-            }
-
-            if(descendCharIndex == -1)
-            {
-                return false;
             }
 
             // Going through all elements from right and trying to find the next character after the sequence-begins-to-descend character.
@@ -78,11 +80,7 @@ namespace Permutations
 
         public static void PrintPermutation(char[] permutation)
         {
-            for (int i = 0; i < permutation.Length; i++)
-            {
-                Console.Write(permutation[i] + " ");
-            }
-            Console.WriteLine();
+            Console.WriteLine(string.Join("", permutation));
         }
 
     }
