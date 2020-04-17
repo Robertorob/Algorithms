@@ -68,8 +68,10 @@ How many permutation of 8 queens is there if they do not beat each other?
 ```
 i=0;
 j=0;
-while(j<n && i<m){
-	while(j>0 && t.charAt(i) != s.charAt(j)){
+while(j<n && i<m)
+{
+	while(j>0 && t.charAt(i) != s.charAt(j))
+	{
 		j = pi[j-1];
 	}
 	if(t.charAt(i) == s.charAt(j))
@@ -77,10 +79,10 @@ while(j<n && i<m){
 	i++;
 }
 ```
-1. i и j увеличиваются только вместе
-1. j уменьшается не больше, чем увеличивается
-1. Суммарно всех шагов вперед: m
-1. Суммарно всех шагов назад: m
+- i и j увеличиваются только вместе
+- j уменьшается не больше, чем увеличивается
+- Суммарно всех шагов вперед: m
+- Суммарно всех шагов назад: m
 Как подсчитать pi? Первая идея
 ```
 for(int i=0;i<n;i++)
