@@ -149,20 +149,20 @@ T=O(n), тогда полная сложность T=O(n + m)
 static void Main(string[] args)
 {
 	char[] a = "ABC".ToCharArray();
-	Permute(a, 0, a.Length - 1);
+	Permute(a, 0);
 	Console.ReadKey();
 }
 
-public static void Permute(char[] permutation, int index, int lastIndex)
+public static void Permute(char[] permutation, int index)
 {
-	if (index == lastIndex)
+	if (index == permutation.Length - 1)
 		Print(permutation);
 	else
 	{
-		for (int j = index; j <= lastIndex; j++)
+		for (int j = index; j < permutation.Length; j++)
 		{
 			Swap(permutation, index, j);
-			Permute(permutation, index + 1, lastIndex);
+			Permute(permutation, index + 1);
 			Swap(permutation, index, j);
 		}
 	}
