@@ -143,6 +143,32 @@ T=O(n), тогда полная сложность T=O(n + m)
 
 Можно объединить эти два алгоритма и вычислять сразу то, что генерирует Сортировочная станция
 
+## Вычисление всех перестановок рекурсивно (RecursivePermutations)
+Даны перестановки без повторений (ABC)
+```
+static void Main(string[] args)
+{
+	char[] a = "ABC".ToCharArray();
+	Permute(a, 0, a.Length - 1);
+	Console.ReadKey();
+}
+
+public static void Permute(char[] permutation, int index, int lastIndex)
+{
+	if (index == lastIndex)
+		Print(permutation);
+	else
+	{
+		for (int j = index; j <= lastIndex; j++)
+		{
+			Swap(permutation, index, j);
+			Permute(permutation, index + 1, lastIndex);
+			Swap(permutation, index, j);
+		}
+	}
+}
+```
+
 							
 
 

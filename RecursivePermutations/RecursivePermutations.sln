@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecursivePermutations", "RecursivePermutations\RecursivePermutations.csproj", "{47399E33-D0DB-4888-978A-C70D0C6237D8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47399E33-D0DB-4888-978A-C70D0C6237D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47399E33-D0DB-4888-978A-C70D0C6237D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47399E33-D0DB-4888-978A-C70D0C6237D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47399E33-D0DB-4888-978A-C70D0C6237D8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3BE12195-3238-4F0B-97CB-13ED0C500D8E}
+	EndGlobalSection
+EndGlobal
