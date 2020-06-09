@@ -6,7 +6,6 @@ namespace FarNodes
 {
     public class Node
     {
-        public int Value { get; set; }
         public List<int> Neibhs { get; set; }
     }
 
@@ -18,42 +17,36 @@ namespace FarNodes
             {
                 new Node
                 {
-                    Value = 1,
                     Neibhs = new List<int>{2}
                 },
                 new Node
                 {
-                    Value = 2,
                     Neibhs = new List<int>{1,3}
                 },
                 new Node
                 {
-                    Value = 3,
                     Neibhs = new List<int>{2,4,5}
                 },
                 new Node
                 {
-                    Value = 4,
                     Neibhs = new List<int>{3}
                 },
                 new Node
                 {
-                    Value = 5,
                     Neibhs = new List<int>{3,6}
                 },
                 new Node
                 {
-                    Value = 6,
                     Neibhs = new List<int>{5}
                 }
             };
 
-            bool[] used = new bool[6];
-            int[] lengts = new int[6];
+            bool[] used = new bool[g.Count];
+            int[] lengts = new int[g.Count];
 
             KeyValuePair<int, int> kv = dfs(g, 0, 0, used);
 
-            bool[] used2 = new bool[6];
+            bool[] used2 = new bool[g.Count];
 
             KeyValuePair<int, int> kv2 = dfs(g, kv.Key, 0, used2);
 
