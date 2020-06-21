@@ -32,9 +32,17 @@ namespace Dijkstra
             }
         }
 
+        public MinHeap()
+        {
+            this.list = new List<Node>();
+        }
+
         // O(log(N))
         public Node GetMin()
         {
+            if (this.HeapSize < 1)
+                return null;
+
             Node result = this.list[0];
             this.list[0] = list[this.HeapSize - 1];
             this.list.RemoveAt(this.HeapSize - 1);

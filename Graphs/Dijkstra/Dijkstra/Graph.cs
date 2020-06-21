@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Dijkstra
 {
     public class Node
     {
-        public Node(int value, int previous, List<Edge> neibhs)
+        public Node(int value, params Edge [] neibhs)
         {
             this.Value = value;
-            this.Previous = previous;
-            this.Neibhs = neibhs;
+            this.Neibhs = new List<Edge>();
+            this.Neibhs.AddRange(neibhs.ToList());
         }
 
         public List<Edge> Neibhs { get; set; }
@@ -30,13 +31,13 @@ namespace Dijkstra
 
     public class Edge
     {
-        public Edge(int vertex, int weight)
+        public Edge(int nodeNumber, int weight)
         {
-            this.Vertex = vertex;
+            this.NodeNumber = nodeNumber;
             this.Weight = weight;
         }
 
-        public int Vertex { get; set; }
+        public int NodeNumber { get; set; }
         public int Weight { get; set; }       
     }
 }

@@ -16,6 +16,43 @@
 ## Алгоритм дейкстры (Dijkstra) и Двоичная куча (Binary heap -> Min heap)
 Найти все кратчайшие расстояния от заданной вершины до всех остальных вершин
 
+*Решение*: Смотрим алгоритм на русскоязычной википедии (на ней есть step-by-step пример). Для хранения ещё не посещённых вершин используем двоичную кучу, где ключом является кратчайшее расстояние. Структура данных: список вершин (Node), где у каждой вершины есть набор ребёр с весами (Edge) (т.е. не просто соседи, но и расстояние до этого соседа).
+
+```
+Node[] g = new Node[6]
+{
+	new Node(0,             new Edge(5, 14), new Edge(1, 7), new Edge(2, 9)),
+	new Node(int.MaxValue,  new Edge(0, 7), new Edge(2, 10), new Edge(3, 15)),
+	new Node(int.MaxValue,  new Edge(0, 9), new Edge(1, 10), new Edge(3, 11), new Edge(5, 2)),
+	new Node(int.MaxValue,  new Edge(1, 15), new Edge(2, 11), new Edge(4, 6)),
+	new Node(int.MaxValue,  new Edge(5, 9), new Edge(3, 6) ),
+	new Node(int.MaxValue,  new Edge(0, 14), new Edge(2, 2), new Edge(4, 9))
+};
+
+MinHeap heap = new MinHeap();
+
+Node node = g[0];
+
+while(true)
+{
+	node.Checked = true;
+
+	foreach (var n in node.Neibhs)
+	{
+		if (g[n.NodeNumber].Checked)
+			continue;
+
+		g[n.NodeNumber].Value = Min(n.Weight + node.Value, g[n.NodeNumber].Value);
+		heap.Add(g[n.NodeNumber]);
+	}
+
+	node = heap.GetMin();
+
+	if (node == null)
+		break;
+}
+```
+
 ## Игра Ним
 Играют двое. На столе лежат палочки. Пусть их будет 10. Для любого количества палочек заданы варианты, сколько можно взять палочек.
 
