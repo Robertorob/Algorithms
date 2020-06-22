@@ -86,3 +86,24 @@ public static Result GetResult(List<Node> g, int n)
 	return Result.Loss;
 }
 ```
+
+
+
+
+
+## delete
+
+# Updating NuGet package
+To  update any NuGet package you should:
+
+1. Put source files (*.7z files) to the corresponding folder 
+    - src\AXPSDemoData
+    - src\DemoData
+    - src\DemoVolumeData
+
+
+1. Change the .nuspec files if you want to change the package's metadata.
+
+1. Create a PR.
+
+1. After PR is merged your changes will be automatically applied to the new NuGet packages and published to the BuildTeamTesting feed
