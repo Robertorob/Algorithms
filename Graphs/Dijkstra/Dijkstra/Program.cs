@@ -8,8 +8,6 @@ namespace Dijkstra
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello Dijkstra!");
-
             Node[] g = new Node[6]
             {
                 new Node(0,             new Edge(5, 14), new Edge(1, 7), new Edge(2, 9)),
@@ -37,15 +35,10 @@ namespace Dijkstra
                     heap.Add(g[n.NodeNumber]);
                 }
 
-                //g[minEdge.Vertex].Value = 
-
                 node = heap.GetMin();
 
                 if (node == null)
                     break;
-
-                //break;
-
             }
 
             for (int i = 0; i < g.Length; i++)
