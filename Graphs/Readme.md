@@ -183,3 +183,58 @@ class Solution {
 }
 ```
 
+## Postorder Traversal (Without recursion, with stack)
+
+Given a binary tree, return the postorder traversal of its nodes’ values.
+
+Example :
+
+Given binary tree
+```
+   1
+    \
+     2
+    /
+   3
+```
+return [3,2,1].
+
+**Using recursion is not allowed**.
+
+Решение: код из Википедии переведён на C#
+```
+/**
+ * Definition for binary tree
+ * class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int x) {this.val = x; this.left = this.right = null;}
+ * }
+ */
+class Solution {
+    public List<int> postorderTraversal(TreeNode A) {
+        Stack<TreeNode> s = new Stack<TreeNode>();
+        List<int> result = new List<int>();
+        TreeNode lastNodeVisited = null;
+        while(s.Count > 0 || A != null){
+            if(A != null){
+                s.Push(A);
+                A = A.left;
+            }
+            else{
+                TreeNode peekNode = s.Peek();
+                if(peekNode.right != null && lastNodeVisited != peekNode.right)
+                    A = peekNode.right;
+                else{
+                    result.Add(peekNode.val);
+                    lastNodeVisited = s.Pop();
+                }
+                    
+            }
+        }
+        
+        return result;
+    }
+}
+```
