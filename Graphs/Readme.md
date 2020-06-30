@@ -238,3 +238,98 @@ class Solution {
     }
 }
 ```
+
+## ZigZag level Order Traversal BT
+https://www.interviewbit.com/problems/zigzag-level-order-traversal-bt/
+
+Нужно пройтись по каждому уровню дерева, чередуя направления: слева направо потом справа налево.
+
+Given a binary tree, return the zigzag level order traversal of its nodes’ values. (ie, from left to right, then right to left for the next level and alternate between).
+
+Example :
+Given binary tree
+```
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+return
+```
+[
+         [3],
+         [20, 9],
+         [15, 7]
+]
+```
+
+Решение: 
+1. Пройтись обходом в ширину с двумя очередями
+1. Перед тем, как положить очередной уровень в результат, реверснуть уровень (потом реверснуть обратно).
+
+```
+/**
+ * Definition for binary tree
+ * class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int x) {this.val = x; this.left = this.right = null;}
+ * }
+ */
+class Solution {
+    public List<List<int>> zigzagLevelOrder(TreeNode A)
+        {
+            List<List<int>> result = new List<List<int>>();
+
+            result.Add(new List<int> { A.val });
+
+            Queue<TreeNode> list = new Queue<TreeNode>();
+
+            list.Enqueue(A);
+
+            bool left = false;
+            while (list.Count > 0)
+            {
+
+                Queue<TreeNode> list2 = new Queue<TreeNode>();
+
+                while (list.Count > 0)
+                {
+                    var g = list.Dequeue();
+
+                    if (g.left != null)
+                        list2.Enqueue(g.left);
+                    if (g.right != null)
+                        list2.Enqueue(g.right);
+                }
+
+                Swap(ref list, ref list2);
+
+                if (!left)
+                    list = new Queue<TreeNode>(list.Reverse());
+
+                List<int> level = new List<int>();
+                foreach (var item in list)
+                    level.Add(item.val);
+
+                if (!left)
+                    list = new Queue<TreeNode>(list.Reverse());
+
+                if (level.Count > 0)
+                    result.Add(level);
+
+                left = !left;
+            }
+            return result;
+        }
+
+        public static void Swap(ref Queue<TreeNode> x, ref Queue<TreeNode> y)
+        {
+            var t = x;
+            x = y;
+            y = t;
+        }
+}
+```
