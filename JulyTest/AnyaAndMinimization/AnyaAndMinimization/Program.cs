@@ -36,18 +36,15 @@ namespace ConsoleApp1
             }
 
 
-            var num = line2.ToCharArray();
-            int[] result = new int[num.Length]; //Требуемый массив
-            for (int i = 0; i < num.Length; i++)
-                result[i] = int.Parse(num[i].ToString());
+            char[] result = line2.ToCharArray();
 
             for (int i = 0; i < n; i++)
             {
                 if (i == 0)
                 {
-                    if (result[i] != 1 && k > 0)
+                    if (result[i] != '1' && k > 0)
                     {
-                        result[i] = 1;
+                        result[i] = '1';
                         k--;
                     }
                 }
@@ -55,25 +52,15 @@ namespace ConsoleApp1
                 {
                     if (result[i] == 0)
                         continue;
-                    if (k > 0 && result[i] > 0)
+                    if (k > 0 && result[i] != '0')
                     {
-                        result[i] = 0;
+                        result[i] = '0';
                         k--;
                     }
                 }
             }
 
-
-
-            StringBuilder str = new StringBuilder();
-            for (int i = 0; i < result.Length; i++)
-            {
-                str.Append(result[i]);
-            }
-
-
-
-            Console.WriteLine(str);
+            Console.WriteLine(new string(result));
         }
     }
 }
