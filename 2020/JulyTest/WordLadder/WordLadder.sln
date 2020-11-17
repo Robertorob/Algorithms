@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30128.74
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordLadder", "WordLadder\WordLadder.csproj", "{6727880C-3507-4CBA-B906-5DFA28380804}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6727880C-3507-4CBA-B906-5DFA28380804}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6727880C-3507-4CBA-B906-5DFA28380804}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6727880C-3507-4CBA-B906-5DFA28380804}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6727880C-3507-4CBA-B906-5DFA28380804}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {29DF9404-93E5-47F9-9ABB-5BB37D6FF3B8}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+	<ItemGroup>
+		<ExcludeFromBinaryHotFix Include="$(OutputPath)\Services\AOSServiceDSC" />
+		<ExcludeFromBinaryHotFix Include="$(OutputPath)\Services\HotfixBabysitter" />
+		<ExcludeFromBinaryHotFix Include="$(OutputPath)\Services\RetailTestAssets" />
+		<ExcludeFromBinaryHotFix Include="$(OutputPath)\Services\TestAssets" />
+		<ExcludeFromBinaryHotFix Include="$(OutputPath)\Services\UpgradeBabysitter" />
+		<ExcludeFromBinaryHotFix Include="$(OutputPath)\Services\UserSID" />
+	</ItemGroup>
+
+	<Target Name="My">
+		<Message Text="ASDFASDFASDFASDF ASDFASDFASDF"/>
+		<MakeDir Directories="@(ExcludeFromBinaryHotFix)"/>
+	</Target>
+</Project>
