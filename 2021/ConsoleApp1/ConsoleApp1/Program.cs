@@ -11,7 +11,7 @@ namespace ConsoleApp1
             var line1 = SplitString();
 
             long n = long.Parse(line1[0]);
-            long m = long.Parse(line1[1]);
+            long memory = long.Parse(line1[1]);
 
             long[] a = new long[n];
             long[] diffs = new long[n];
@@ -26,20 +26,21 @@ namespace ConsoleApp1
 
             long sum = a.Sum();
             Array.Sort(diffs);
+            diffs = diffs.Reverse().ToArray();
 
-            if (sum <= m)
+            if (sum <= memory)
             {
                 Console.WriteLine("0");
                 return;
             }
 
-            for (long i = diffs.Length - 1; i >= 0; i--)
+            for (long i = 0; i < diffs.Length; i++)
             {
                 sum -= diffs[i];
 
-                if (sum <= m)
+                if (sum <= memory)
                 {
-                    Console.WriteLine(i);
+                    Console.WriteLine(i + 1);
                     return;
                 }
             }
