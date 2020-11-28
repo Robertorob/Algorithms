@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Отсортированные разности соседних", "Отсортированные разности соседних\Отсортированные разности соседних.csproj", "{751951D5-A74B-49D2-A294-017CC79DD043}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{751951D5-A74B-49D2-A294-017CC79DD043}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{751951D5-A74B-49D2-A294-017CC79DD043}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{751951D5-A74B-49D2-A294-017CC79DD043}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{751951D5-A74B-49D2-A294-017CC79DD043}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {50619116-3103-4240-BE85-E24014ECBE72}
+	EndGlobalSection
+EndGlobal

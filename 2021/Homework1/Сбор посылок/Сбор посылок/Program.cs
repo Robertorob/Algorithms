@@ -48,6 +48,7 @@ namespace Сбор_посылок
                     {
                         output.AppendLine("NO");
                         flag = true;
+                        break;
                     }
 
                     int right = x - cX;
