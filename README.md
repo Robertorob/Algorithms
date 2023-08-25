@@ -1,6 +1,4 @@
 # Algorithms
-This repo contains all solved tasks from Algorithm course in Akvelon
-
 ## Задача о выпуклой оболочке (convex hall ??)
 1. Выбираем самую левую нижнюю точку
 1. Сортируем по углу
