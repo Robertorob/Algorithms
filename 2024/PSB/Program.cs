@@ -39,5 +39,15 @@ static int CalculateSubstringCount(string? bigString, string? smallString)
     if (smallString.Length > bigString.Length)
         return 0;
 
-    return 
+    foreach (char c in smallString)
+    {
+        var asdf = CalculateSubstringCountRecursive(bigString, c, 0);
+    }
+
+    return 777;
+}
+
+static int CalculateSubstringCountRecursive(char[] bigString, char charToFind, int index)
+{
+
 }
