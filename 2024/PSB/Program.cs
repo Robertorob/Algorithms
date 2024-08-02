@@ -41,7 +41,7 @@ static int CalculateSubstringCount(string? bigString, string? smallString)
 
     foreach (char c in smallString)
     {
-        var asdf = CalculateSubstringCountRecursive(bigString, c, 0);
+        // int asdf = CalculateSubstringCountRecursive(bigString, c, 0);
     }
 
     return 777;
@@ -49,5 +49,5 @@ static int CalculateSubstringCount(string? bigString, string? smallString)
 
 static int CalculateSubstringCountRecursive(char[] bigString, char charToFind, int index)
 {
-
+    return 123;
 }
