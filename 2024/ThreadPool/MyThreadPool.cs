@@ -40,7 +40,21 @@ public static class MyThreadPool
                 while (true)
                 {
                     (Action workItem, ExecutionContext? context) = s_workItems.Take();
-                    workItem();
+                    
+                    if (context is null)
+                    {
+                        workItem();
+                    }
+                    else
+                    {
+                        /* 
+                         * ((Action)state!).Invoke() the same as ((Action)state!)()
+                         * Run "state => ((Action)state!).Invoke()"
+                         * in "context"
+                         * where "state" is "workItem"
+                        */
+                        ExecutionContext.Run(context, state => ((Action)state!).Invoke(), workItem);
+                    }
                 }
             });
 
