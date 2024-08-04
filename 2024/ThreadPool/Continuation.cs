@@ -1,5 +1,8 @@
 ﻿/// <summary>
 /// https://www.youtube.com/watch?v=il9gl8MH17s
+/// .
+/// Демонстрирует, в каком потоке может происходить continuation.
+/// Continuation - то, что происходит после await.
 /// </summary>
 public static class Continuation
 {
@@ -13,7 +16,7 @@ public static class Continuation
      * 1. 1000_000_000, тогда task УСПЕЕТ завершиться и continuation будет в том же потоке.
      * 2. 1000, тогда task НЕ_УСПЕЕТ завершиться и continuation будет в другом потоке.
      */
-    public static async Task Run(int milliseconds)
+    private static async Task Run(int milliseconds)
     {
         PrintCurrentThreadId("1");
 
@@ -46,6 +49,15 @@ public static class Continuation
     public static void PrintCurrentThreadId(string message)
     {
         Console.WriteLine($"Message: {message}, thread id: {Thread.CurrentThread.ManagedThreadId}");
+    }
+
+    public static async Task Run()
+    {
+        Console.WriteLine("Тот же поток, task успел завершиться, 1000_000_000 миллисекунд работало основной поток");
+        await Continuation.Run(1000_000_000);
+
+        Console.WriteLine("Другой поток, task не успел завершиться, 1000 миллисекунд работало основной поток");
+        await Continuation.Run(1000);
     }
 }
 
