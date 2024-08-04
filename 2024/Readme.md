@@ -25,3 +25,14 @@
 # AreAnagramms
 Являются ли две строки анаграммами (перестановками букв).
 Решение O(n)
+
+# ThreadPool
+Стефан Туб реализует ThreadPool, Task
+https://www.youtube.com/watch?v=R-z2Hv-7nxk
+
+# Code forces
+## https://codeforces.com/contest/1995/
+### A
+https://codeforces.com/contest/1995/problem/A
+
+
