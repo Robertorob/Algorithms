@@ -121,7 +121,9 @@ public static class MyThreadPool
 
         // UseTaskDelay();
 
-        UseChainedTaskDelay();
+        //UseChainedTaskDelay();
+
+        UseChainedTaskDelay2();
 
     }
 
@@ -202,6 +204,22 @@ public static class MyThreadPool
                     Console.WriteLine("How are you?");
                 });
             });
+        }).Wait();
+    }
+
+    /// <summary>
+    /// Используем цепочку делегатов.
+    /// </summary>
+    private static void UseChainedTaskDelay2()
+    {
+        Console.WriteLine("Hello, ");
+        MyTask.Delay(1000).ContinueWith(delegate
+        {
+            Console.WriteLine("World!");
+            return MyTask.Delay(1000);
+        }).ContinueWith(delegate
+        {
+            Console.WriteLine("How are you");
         }).Wait();
     }
 }
