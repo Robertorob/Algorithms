@@ -125,7 +125,9 @@ public static class MyThreadPool
 
         // UseChainedTaskDelay2();
 
-        UseIterator();
+        // UseIterator();
+
+        await UseAwaiter();
 
     }
 
@@ -228,6 +230,9 @@ public static class MyThreadPool
     /// <summary>
     /// итератор, yield.
     /// </summary>
+    /// <remarks>
+    /// Логика реализации итераторов такая же, как логика реализации async(state machine).
+    /// </remarks>
     private static void UseIterator()
     {
         static IEnumerable<MyTask> PrintAsync()
@@ -240,6 +245,23 @@ public static class MyThreadPool
         }
 
         MyTask.Iterate(PrintAsync()).Wait();
+    }
+
+    /// <summary>
+    /// await.
+    /// </summary>
+    private static async Task UseAwaiter()
+    {
+        static async Task PrintAsync()
+        {
+            for (int i = 0; ; i++)
+            {
+                await MyTask.Delay(1000);
+                Console.WriteLine(i);
+            }
+        }
+
+        PrintAsync().Wait();
     }
 }
 

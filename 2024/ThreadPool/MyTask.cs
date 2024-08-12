@@ -1,4 +1,5 @@
-﻿using System.Runtime.ExceptionServices;
+﻿using System.Runtime.CompilerServices;
+using System.Runtime.ExceptionServices;
 
 /// <summary>
 /// Stephen Toub.
@@ -13,6 +14,8 @@ public class MyTask
     private Exception? _exception;
     private Action? _continuation;
     private ExecutionContext? _context;
+
+    public Awaiter GetAwaiter() => new(this);
 
     public bool IsCompleted
     {
