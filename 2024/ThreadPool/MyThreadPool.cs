@@ -109,11 +109,78 @@ public static class MyThreadPool
 
     public static async Task RunExperiment()
     {
-        RunMyThreadPool();
-        await Task.Delay(DelayAfterAllLoops);
-        RunThreadPool();
+        //RunMyThreadPool();
+        //await Task.Delay(DelayAfterAllLoops);
+        //RunThreadPool();
+        //await Task.Delay(DelayAfterAllLoops);
+        //UseTaskRun();
+        //await Task.Delay(DelayAfterAllLoops);
+
+        // UseTaskWhenAll();
+
+        UseTaskDelay();
 
         Console.ReadKey();
+    }
+
+    /// <summary>
+    /// Используем MyTask.Run().
+    /// </summary>
+    private static void UseTaskRun()
+    {
+        List<MyTask> tasks = new();
+
+        AsyncLocal<int> myValue = new();
+        for (int i = 0; i < LOOPS_COUNT; i++)
+        {
+            myValue.Value = i;
+            tasks.Add(MyTask.Run(delegate
+            {
+                Console.WriteLine($"MyTask.Run -> AsyncLocal: {myValue.Value}");
+                Thread.Sleep(DELAY_IN_LOOP);
+            }));
+        }
+
+        /*
+         * Хотелось бы использовать Task.WhenAll(Task[])
+         */
+        foreach (MyTask task in tasks)
+        {
+            task.Wait();
+        }
+    }
+
+    /// <summary>
+    /// Используем MyTask.Run().
+    /// </summary>
+    private static void UseTaskWhenAll()
+    {
+        List<MyTask> tasks = new();
+
+        AsyncLocal<int> myValue = new();
+        for (int i = 0; i < LOOPS_COUNT; i++)
+        {
+            myValue.Value = i;
+            tasks.Add(MyTask.Run(delegate
+            {
+                Console.WriteLine($"MyTask.Run -> AsyncLocal: {myValue.Value}");
+                Thread.Sleep(DELAY_IN_LOOP);
+            }));
+        }
+
+        MyTask.WhenAll(tasks).Wait();
+    }
+
+    /// <summary>
+    /// Используем MyTask.Delay().
+    /// </summary>
+    private static void UseTaskDelay()
+    {
+        Console.WriteLine("Hello, ");
+        MyTask.Delay(2000).ContinueWith(delegate
+        {
+            Console.WriteLine("World!");
+        }).Wait();
     }
 }
 
