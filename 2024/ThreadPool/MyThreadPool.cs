@@ -115,12 +115,14 @@ public static class MyThreadPool
         //await Task.Delay(DelayAfterAllLoops);
         //UseTaskRun();
         //await Task.Delay(DelayAfterAllLoops);
+        // Console.ReadKey();
 
         // UseTaskWhenAll();
 
-        UseTaskDelay();
+        // UseTaskDelay();
 
-        Console.ReadKey();
+        UseChainedTaskDelay();
+
     }
 
     /// <summary>
@@ -180,6 +182,26 @@ public static class MyThreadPool
         MyTask.Delay(2000).ContinueWith(delegate
         {
             Console.WriteLine("World!");
+        }).Wait();
+    }
+
+    /// <summary>
+    /// Используем цепочку делегатов.
+    /// </summary>
+    private static void UseChainedTaskDelay()
+    {
+        Console.WriteLine("Hello, ");
+        MyTask.Delay(1000).ContinueWith(delegate
+        {
+            Console.WriteLine("World!");
+            return MyTask.Delay(1000).ContinueWith(delegate
+            {
+                Console.WriteLine("And Robert!");
+                return MyTask.Delay(1000).ContinueWith(delegate
+                {
+                    Console.WriteLine("How are you?");
+                });
+            });
         }).Wait();
     }
 }

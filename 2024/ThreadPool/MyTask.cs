@@ -140,6 +140,53 @@ public class MyTask
         return task;
     }
 
+    public MyTask ContinueWith(Func<MyTask> action)
+    {
+        MyTask task = new();
+        Action callback = () =>
+        {
+            try
+            {
+                MyTask next = action();
+                next.ContinueWith(delegate
+                {
+                    if (next._exception is not null)
+                    {
+                        task.SetException(next._exception);
+                    }
+                    else
+                    {
+                        task.SetResult();
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                task.SetException(e);
+                return;
+            }
+        };
+
+        lock (this)
+        {
+            if (_completed)
+            {
+                /*
+                 * Если задача уже завершена, то continuation можно продолжить в том же потоке.
+                 * Это иллюстрируется в файле "Continuation.cs". Но тут по-другому, необходимо разобраться.
+                 */
+                MyThreadPool.QueueUserWorkItem(callback);
+            }
+            else
+            {
+                _continuation = callback;
+                _context = ExecutionContext.Capture();
+            }
+        }
+
+        return task;
+    }
+
     public static MyTask Run(Action action)
     {
         MyTask task = new();
