@@ -123,7 +123,9 @@ public static class MyThreadPool
 
         //UseChainedTaskDelay();
 
-        UseChainedTaskDelay2();
+        // UseChainedTaskDelay2();
+
+        UseIterator();
 
     }
 
@@ -221,6 +223,23 @@ public static class MyThreadPool
         {
             Console.WriteLine("How are you");
         }).Wait();
+    }
+
+    /// <summary>
+    /// итератор, yield.
+    /// </summary>
+    private static void UseIterator()
+    {
+        static IEnumerable<MyTask> PrintAsync()
+        {
+            for (int i = 0; ; i++)
+            {
+                yield return MyTask.Delay(1000);
+                Console.WriteLine(i);
+            }
+        }
+
+        MyTask.Iterate(PrintAsync()).Wait();
     }
 }
 

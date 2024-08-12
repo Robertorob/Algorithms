@@ -253,4 +253,33 @@ public class MyTask
         new Timer(_ => task.SetResult()).Change(timeout, -1);
         return task;
     }
+
+    public static MyTask Iterate(IEnumerable<MyTask> tasks)
+    {
+        MyTask task = new();
+        IEnumerator<MyTask> enumerator = tasks.GetEnumerator();
+        void MoveNext()
+        {
+            try
+            {
+                if (enumerator.MoveNext())
+                {
+                    MyTask next = enumerator.Current;
+                    next.ContinueWith(MoveNext);
+                    return;
+                }
+            }
+            catch (Exception exc)
+            {
+                task.SetException(exc);
+                return;
+            }
+
+            task.SetResult();
+        }
+
+        MoveNext();
+
+        return task;
+    }
 }
